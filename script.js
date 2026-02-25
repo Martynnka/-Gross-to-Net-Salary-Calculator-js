@@ -3,13 +3,10 @@ const Button = document.getElementById("button-el");
 const result = document.getElementById("converted-el");
 const adapted = document.getElementById("ad-el")
 
-
 Button.addEventListener("click", function(){
     let value = Number(inputValue.value);
-    let percentsGPM = 0;
+
     let sum = 0;
-    const npd = getNPD(value);
-    const gpmBase = Math.max(0, value - npd);
 
     if(inputValue.value <=0)
     {
@@ -18,25 +15,18 @@ Button.addEventListener("click", function(){
 
     if(value <= 6900)
     {
-        percentsGPM = gpmBase * 0.20;
         adapted.textContent = "Taikomas 20% GPM tarifas, nes jūsų mėnesinės pajamos neviršija pirmosios progresinės ribos.";
     }
     else if (value <= 11500)
     {
-        percentsGPM = gpmBase * 0.25;
         adapted.textContent = "Taikomas 25% GPM tarifas, nes jūsų pajamos viršija pirmąją progresinę ribą.";
     }
     else if (value >= 11501)
     {
-        percentsGPM = gpmBase * 0.32;
         adapted.textContent = "Taikomas 32% GPM tarifas, nes jūsų pajamos viršija antrąją progresinę ribą.";
     }
-
-    const percentsVSD = value * 0.1252;
-
-    const percentsPSD = value * 0.0698;
         
-    sum = value - percentsGPM - percentsVSD - percentsPSD;
+    sum = value - getGPM (value) - percentsVSD(value) - percentsPSD(value);
 
     result.textContent = sum.toFixed(2);
 
@@ -57,6 +47,36 @@ function getNPD(value) {
 
 
     return Math.max(0, Math.min(value, npd));
+}
+
+function getGPM (value)
+{
+    let percentsGPM = 0;
+    
+    const npd = getNPD(value);
+
+    const gpmBase = Math.max(0, value - npd);
+
+    if(value <= 6900)
+    {
+        return percentsGPM = gpmBase * 0.20;
+    }
+    else if (value <= 11500)
+    {
+        return percentsGPM = gpmBase * 0.25;
+    }
+    else if (value >= 11501)
+    {
+        return percentsGPM = gpmBase * 0.32;
+    }
+}
+
+function percentsVSD(value){
+    return value * 0.1252;
+}
+
+function percentsPSD(value){
+    return value * 0.0698;
 }
 
 
