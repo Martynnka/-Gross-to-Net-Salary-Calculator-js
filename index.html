@@ -10,11 +10,27 @@
     <h1>Bruto į Neto</h1>
     <input id="input-el" type ="number">
     <p id = "converted-el">0</p>
-    <p>GPM - 20/25/32 % nuo metinių pajamų<p>
-    <p>VSD - 12,52 %</p>
-    <p>PSD - 6,98 % </p>
-    <p id = "ad-el"></p>
+    <p>Jums lieka <span id = "prec-el" >00.00 %</span> jūsų atlyginimo</p>
     <button id = "button-el" type = "button">Skaičiuoti</button>
+    <p id = "ad-el"></p>
+
+    <div class="row">
+        <span>Gyventojų pajamų mokestis (GPM):</span>
+        <span id="gpm-el">€ 000.00</span>
+    </div>
+
+    <div class="row">
+        <span>Valstybinis socialinis draudimas (VSD):</span>
+        <span id="vsd-el">€ 000.00</span>
+    </div>
+
+    <div class="row">
+        <span>Privalomasis sveikatos draudimas (PSD):</span>
+        <span id="psd-el">€ 000.00</span>
+    </div>
+
+    
+    <hr>
 </body>
 <script src="script.js"></script>
 </html>
